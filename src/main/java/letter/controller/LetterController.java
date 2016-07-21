@@ -244,12 +244,22 @@ public class LetterController {
 		service.insertLetter(map);
 		// to_id(받는이)에 해당하는 register_id를 찾아 push알림 제공
 		String register_id = service.selectFindRegister(to_id);
-		// letterPush(letter_id, to_id, to_name, from_id, from_name, address,
-		// latitude, longitude, content, date, register_id);
+		 letterPush(letter_id, to_id, to_name, from_id, from_name, address,latitude, longitude, content, date, register_id);
 	}
 
 	public void letterPush(String letter_id, String to_id, String to_name, String from_id, String from_name,
 			String address, String latitude, String longitude, String content, String date, String register_id) {
+		String msg = "새로운 편지가 도착했습니다!";
+		try {
+			to_name = URLEncoder.encode(to_name, "euc-kr");
+			from_name = URLEncoder.encode(from_name, "euc-kr");
+			address = URLEncoder.encode(address, "euc-kr");
+			content = URLEncoder.encode(content, "euc-kr");
+			msg = URLEncoder.encode(msg, "euc-kr");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String simpleApiKey = "AIzaSyDQ8J1e2CqzeGQ0y9sSMmlWyjM0ugk74P0";
 		ArrayList<String> regid = new ArrayList<String>(); // reg_id
 
@@ -257,7 +267,7 @@ public class LetterController {
 
 		boolean SHOW_ON_IDLE = false;
 
-		int LIVE_TIME = 1;
+		int LIVE_TIME = 1; 
 
 		int RETRY = 2;
 		regid.add(register_id);
@@ -268,7 +278,7 @@ public class LetterController {
 
 				.delayWhileIdle(SHOW_ON_IDLE)
 
-				.timeToLive(LIVE_TIME).addData("letter_id", letter_id).addData("msg", "new 씨그레터 !!!")
+				.timeToLive(LIVE_TIME).addData("letter_id", letter_id).addData("msg", msg)
 				.addData("to_id", to_id).addData("to_name", to_name).addData("from_id", from_id)
 				.addData("from_name", from_name).addData("address", address).addData("latitude", latitude)
 				.addData("longitude", longitude).addData("content", content).addData("date", date)
