@@ -8,27 +8,21 @@
 					  -webkit-border-radius: 5px; font-size: 13px;  width: 70px; }
 .button:hover		{ background: white; color: black; }
 </style>
-<title>CMS 편지 조회 </title>
+<title>CMS 접속자 리스트</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 </head>
 <body>
-<h2>편지 목록</h2>
+<h2>접속자 목록</h2>
 <table border=''>
 	
 	<thead>
 		<tr>
-			<th>편지 ID</th>
-			<th>받는 이 ID</th>
-			<th>받는 이 Name</th>
-			<th>보내는 이 ID</th>
-			<th>보내는 이 Name</th>
-			<th>주소</th>
-			<th>내용</th>
-			<th>Latitude</th>
-			<th>Longitude</th>
-			<th>읽음 확인</th>
-			<th>날짜</th>
+			<th>번호</th>
+			<th>접속자 ID</th>
+			<th>접속자 Name</th>
+			<th>접속 시간</th>
+			<th>접속 종료 시간</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -36,17 +30,11 @@
 			<c:when test="${fn:length(List) > 0}">
 				<c:forEach items="${List}" var="row">
 					<tr>
-						<td>${row.letter_id}</td>
-						<td>${row.to_id}</td>
-						<td>${row.to_name}</td>
-						<td>${row.from_id}</td>
-						<td>${row.from_name}</td>
-						<td>${row.address}</td>
-						<td>${row.content}</td>
-						<td>${row.latitude}</td>
-						<td>${row.longitude}</td>
-						<td>${row.read_state}</td>
-						<td>${row.date}</td>
+						<td>${row.number}</td>
+						<td>${row.access_id}</td>
+						<td>${row.access_name}</td>
+						<td>${row.access_date}</td>
+						<td>${row.close_date}</td>
 					</tr>
 				</c:forEach>
 			</c:when>
@@ -59,9 +47,9 @@
 		
 	</tbody>
 </table>
-	<h2>삭제할 편지 id 입력</h2>
-	<form method="post" action="deleteLetter.do">
-		번호 : <input type="text" name="letter_id"/><br>
+	<h2>삭제할 번호 입력</h2>
+	<form method="post" action="deleteAccess.do">
+		번호 : <input type="text" name="number"/><br>
 		<input type="submit" value="입력완료"/>
 	</form>
 	<br><br><br>

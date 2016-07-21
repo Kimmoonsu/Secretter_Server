@@ -21,6 +21,7 @@
 			<th>ID</th>
 			<th>Name</th>
 			<th>Register_id</th>
+			<th>가입 날짜</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -31,6 +32,7 @@
 						<td>${row.id}</td>
 						<td>${row.name}</td>
 						<td>${row.register_id}</td>
+						<td>${row.signup_date}</td>
 					</tr>
 				</c:forEach>
 			</c:when>

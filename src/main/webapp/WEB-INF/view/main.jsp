@@ -58,6 +58,9 @@ input[type=checkbox]{ width: 20px; margin: 0; display: inline-block; }
 	 <form id="login-form" action="letterList.do" method="post">
 		<input type="submit" style="font-size:30px; width:300px; height:100px; margin: +50px 0 0 150px;" class="button" name="commit" value="편지함 보기"/>
 	</form>
+	<form id="login-form" action="accessList.do" method="post">
+		<input type="submit" style="font-size:30px; width:300px; height:100px; margin: +50px 0 0 150px;" class="button" name="commit" value="접속자 리스트 보기"/>
+	</form>
 </div>
 </body>
 </html>

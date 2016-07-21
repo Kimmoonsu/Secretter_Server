@@ -20,6 +20,9 @@ public class UserDao extends abDAO{
 	public List<Map<String, Object>> selectLetterList(Map<String, Object> commandMap) {
 		return (List<Map<String,Object>>)selectList("sample.selectLetterList", commandMap);
 	}
+	public List<Map<String, Object>> selectAccessList(Map<String, Object> commandMap) {
+		return (List<Map<String,Object>>)selectList("sample.selectAccessList", commandMap);
+	}
 	public List<Map<String, Object>> selectFindLetter(Map<String, Object> commandMap) {
 		return (List<Map<String,Object>>)selectList("sample.selectFindLetter", commandMap);
 	}
@@ -29,6 +32,9 @@ public class UserDao extends abDAO{
 	}
 	public void insertMember(Map<String, Object> map) {
 		insert("sample.insertMember", map);
+	}
+	public void accessMember(Map<String, Object> map) {
+		insert("sample.accessMember", map);
 	}
 	public void insertLetter(Map<String, Object> map) {
 		insert("sample.insertLetter", map);
@@ -41,9 +47,16 @@ public class UserDao extends abDAO{
 	public void deleteLetter(Map<String, Object> map) {
 		delete("sample.deleteLetter",map);
 	}
-
-	public void updateStamp(Map<String, Object> map) {
-		update("sample.updateStamp", map);
+	
+	public void deleteAccess(Map<String, Object> map) {
+		delete("sample.deleteAccess",map);
 	}
 
+	public void updateLetterState(Map<String, Object> map) {
+		update("sample.updateLetterState", map);
+	}
+
+	public void closeUser(Map<String, Object> map) {
+		update("sample.closeUser", map);
+	}
 }

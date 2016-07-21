@@ -11,6 +11,14 @@
 			   user
 		]]>
 	</select>
+	<select id="selectAccessList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			   access_tb
+		]]>
+	</select>
 	<select id="selectLetterList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
@@ -54,15 +62,34 @@
 				INTO user(
 			    	id,
 			    	name,
-			    	register_id
+			    	register_id,
+			    	signup_date
 			    	)
 				VALUES(
 					#{id},
 			    	#{name},
-			    	#{register_id}
+			    	#{register_id},
+			    	#{date}
 			    )
 		]]>
 	</insert>	
+	
+	<insert id="accessMember" parameterType="hashmap">
+		<![CDATA[
+			INSERT 
+				INTO access_tb(
+			    	access_id,
+			    	access_name,
+			    	access_date
+			    	)
+				VALUES(
+					#{id},
+			    	#{name},
+			    	#{date}
+			    )
+		]]>
+	</insert>
+	
 	<insert id="insertLetter" parameterType="hashmap">
 		<![CDATA[
 			INSERT
@@ -75,7 +102,8 @@
 			    	latitude,
 			    	longitude,
 			    	content,
-			    	read_state
+			    	read_state,
+			    	date
 			    	)
 				VALUES(
 			    	#{to_id},
@@ -86,24 +114,35 @@
 			    	#{latitude},
 			    	#{longitude},
 			    	#{content},
-			    	#{read_state}
+			    	#{read_state},
+			    	#{date}
 			    )
 		]]>
 	</insert>	
 	
-	<update id="updateStamp" parameterType="hashmap">
+	<update id="updateLetterState" parameterType="hashmap">
 		<![CDATA[
 			UPDATE
-				user
+				letter_tb
 			SET
-				name=#{name}
+				read_state=1
 			WHERE
-				id=#{id}
+				letter_id=#{letter_id}
 		]]>
 	</update>	
 	
-	
-	
+	<update id="closeUser" parameterType="hashmap">
+		<![CDATA[
+			UPDATE
+				access_tb
+			SET
+				close_date=#{close_date}
+			WHERE
+				access_id=#{access_id} AND
+				access_name=#{access_name} AND
+				access_date=#{access_date} 
+		]]>
+	</update>
 	<delete id="deleteMember" parameterType="hashmap">
 		<![CDATA[
 			DELETE FROM
@@ -119,6 +158,15 @@
 				letter_tb
 			WHERE
 				letter_id=#{letter_id}
+		]]>
+	</delete>
+	
+	<delete id="deleteAccess" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM
+				access_tb
+			WHERE
+				number=#{number}
 		]]>
 	</delete>	
 	

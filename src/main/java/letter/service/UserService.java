@@ -27,6 +27,11 @@ public class UserService {
 	public List<Map<String, Object>> selectMemberList(Map<String, Object> Map) throws Exception {
 		return dao.selectMemberList(Map);
 	}
+	
+	// 접속자 전체 출력
+		public List<Map<String, Object>> selectAccessList(Map<String, Object> Map) throws Exception {
+			return dao.selectAccessList(Map);
+		}
 
 	// find letter
 	public List<Map<String, Object>> selectFindLetter(Map<String, Object> Map) throws Exception {
@@ -42,7 +47,12 @@ public class UserService {
 	public void insertMember(Map<String, Object> map) {
 		dao.insertMember(map);
 	}
-
+	
+	// access member insert
+	public void accessMember(Map<String, Object> map) {
+		dao.accessMember(map);
+	}
+		
 	// letter insert
 	public void insertLetter(Map<String, Object> map) {
 		dao.insertLetter(map);
@@ -57,15 +67,23 @@ public class UserService {
 	public void deleteLetter(Map<String, Object> map) {
 		dao.deleteLetter(map);
 	}
+	
+	// access mumber delete
+	public void deleteAccess(Map<String, Object> map) {
+		dao.deleteAccess(map);
+	}
 
 	// letter 전체 출력
 	public List<Map<String, Object>> selectLetterList(Map<String, Object> Map) throws Exception {
 		return dao.selectLetterList(Map);
 	}
 
-
-	public void updateStamp(Map<String, Object> map) {
-		dao.updateStamp(map);
+	// update letter read state 
+	public void updateLetterState(Map<String, Object> map) {
+		dao.updateLetterState(map);
 	}
-
+	
+	public void closeUser(Map<String, Object> map) {
+		dao.closeUser(map);
+	}
 }
